@@ -17,5 +17,19 @@ namespace TestProject1
                 Assert.AreEqual(MoodAnalysisException.ExceptionType.NULL_MOOD, ex.GetType());
             }
         }
+
+        [TestMethod]
+        public void GivenMessage_WhenEmpty_ShouldThrowMoodAnalysisException()
+        {
+            try
+            {
+                Mood moodAnalyser = new Mood("");
+                string mood = moodAnalyser.AnalyseMood();
+            }
+            catch (MoodAnalysisException ex)
+            {
+                Assert.AreEqual(MoodAnalysisException.ExceptionType.EMPTY_MOOD, ex.GetType());
+            }
+        }
      }
 }

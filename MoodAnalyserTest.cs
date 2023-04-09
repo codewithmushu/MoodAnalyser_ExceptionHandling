@@ -5,11 +5,17 @@ namespace TestProject1
     public class MoodAnalyserTest
     {
         [TestMethod]
-        public void GivenMessage_WhenNull_ShouldReturnHappy()
+        public void GivenMessage_WhenNull_ShouldThrowMoodAnalysisException()
         {
-            Mood moodAnalyser = new Mood(null);
-            string mood = moodAnalyser.AnalyseMood();
-            Assert.AreEqual("HAPPY", mood);
+            try
+            {
+                Mood moodAnalyser = new Mood(null);
+                string mood = moodAnalyser.AnalyseMood();
+            }
+            catch (MoodAnalysisException ex)
+            {
+                Assert.AreEqual(MoodAnalysisException.ExceptionType.NULL_MOOD, ex.GetType());
+            }
         }
-    }
+     }
 }

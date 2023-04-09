@@ -26,7 +26,7 @@ namespace Mood_Analyser_ExceptionHandling
             {
                 if (message == null || message == "")
                 {
-                    throw new MoodAnalysisException("Mood should not be null");
+                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NULL_MOOD, "Mood should not be null");
                 }
 
                 if (message.Contains("Sad"))
@@ -38,12 +38,12 @@ namespace Mood_Analyser_ExceptionHandling
                     return "HAPPY";
                 }
             }
-            catch (MoodAnalysisException )
+            catch (MoodAnalysisException ex)
             {
-                return "HAPPY";
+                return ex.Message;
             }
         }
-    }
+    }  
 }
 
 

@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Mood_Analyser_ExceptionHandling
 {
-    public class MoodAnalyser
+    public class Mood
     {
         private string message;
 
-        public MoodAnalyser()
+        public Mood()
         {
-            this.message = "";
+            message = "I am in Happy Mood";
         }
 
-        public MoodAnalyser(string message)
+        public Mood(string message)
         {
             this.message = message;
         }
@@ -24,6 +24,11 @@ namespace Mood_Analyser_ExceptionHandling
         {
             try
             {
+                if (message == null || message == "")
+                {
+                    throw new MoodAnalysisException("Mood should not be null");
+                }
+
                 if (message.Contains("Sad"))
                 {
                     return "SAD";
@@ -33,12 +38,12 @@ namespace Mood_Analyser_ExceptionHandling
                     return "HAPPY";
                 }
             }
-            catch (NullReferenceException)
+            catch (MoodAnalysisException )
             {
-                throw new MoodAnalysisException("Mood should not be null");
+                return "HAPPY";
             }
         }
     }
-
-
 }
+
+

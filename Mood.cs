@@ -12,7 +12,7 @@ namespace Mood_Analyser_ExceptionHandling
 
         public Mood()
         {
-            message = "I am in Happy Mood";
+            this.message = "Default";
         }
 
         public Mood(string message)
@@ -24,12 +24,12 @@ namespace Mood_Analyser_ExceptionHandling
         {
             try
             {
-                if (message == null || message == "")
+                if (message.Equals(string.Empty))
                 {
-                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NULL_MOOD, "Mood should not be null");
+                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.EMPTY_MESSAGE, "Mood should not be empty");
                 }
 
-                if (message.Contains("Sad"))
+                if (message.ToLower().Contains("sad"))
                 {
                     return "SAD";
                 }
@@ -38,12 +38,15 @@ namespace Mood_Analyser_ExceptionHandling
                     return "HAPPY";
                 }
             }
-            catch (MoodAnalysisException ex)
+            catch (NullReferenceException)
             {
-                return ex.Message;
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NULL_MESSAGE, "Mood should not be null");
             }
         }
-    }  
+
+
+    }
+
 }
 
 

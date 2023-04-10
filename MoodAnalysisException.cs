@@ -10,8 +10,12 @@ namespace Mood_Analyser_ExceptionHandling
     {
         public enum ExceptionType
         {
-            NULL_MOOD,
-            EMPTY_MOOD
+            NULL_MESSAGE,
+            EMPTY_MESSAGE,
+            NO_SUCH_FIELD,
+            NO_SUCH_METHOD,
+            NO_SUCH_CLASS,
+            OBJECT_CREATION_ISSUE
         }
 
         private readonly ExceptionType type;
@@ -20,11 +24,5 @@ namespace Mood_Analyser_ExceptionHandling
         {
             this.type = type;
         }
-
-        public ExceptionType GetType()
-        {
-            return type;
-        }
     }
-
 }

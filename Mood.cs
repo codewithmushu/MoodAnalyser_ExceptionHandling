@@ -12,7 +12,7 @@ namespace Mood_Analyser_ExceptionHandling
 
         public Mood()
         {
-            this.message = "Default";
+            message = "";
         }
 
         public Mood(string message)
@@ -22,31 +22,30 @@ namespace Mood_Analyser_ExceptionHandling
 
         public string AnalyseMood()
         {
-            try
+            if (message.Contains("Sad"))
             {
-                if (message.Equals(string.Empty))
-                {
-                    throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.EMPTY_MESSAGE, "Mood should not be empty");
-                }
-
-                if (message.ToLower().Contains("sad"))
-                {
-                    return "SAD";
-                }
-                else
-                {
-                    return "HAPPY";
-                }
+                return "Sad";
             }
-            catch (NullReferenceException)
+            else
             {
-                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NULL_MESSAGE, "Mood should not be null");
+                return "Happy";
             }
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || this.GetType() != obj.GetType())
+            {
+                return false;
+            }
+            Mood other = (Mood)obj;
+            return this.message.Equals(other.message);
+        }
 
-    }
-
+        public override int GetHashCode()
+        {
+            return message.GetHashCode();
+        }
+    }   
 }
-
 

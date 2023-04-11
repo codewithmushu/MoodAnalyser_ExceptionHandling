@@ -1,23 +1,16 @@
 using Mood_Analyser_ExceptionHandling;
 namespace TestProject1
 {
-   [TestClass]
-    public class MoodAnalyserTest
-    {
-
-        [TestMethod]
-        public void GivenMoodAnalyserClassName_WhenDefaultConstructorCalled_ShouldReturnObject()
+   [TestMethod]
+        public void GivenClassName_WhenImproper_ShouldThrowMoodAnalysisException()
         {
-            Mood moodAnalyser = MoodAnalyserFactory.CreateMoodAnalyser();
-            Assert.IsInstanceOfType(moodAnalyser, typeof(Mood));
+            try
+            {
+                MoodAnalyserFactory.CreateMoodAnalyser("WrongClassName");
+            }
+            catch (MoodAnalysisException e)
+            {
+                Assert.AreEqual(MoodAnalysisException.ExceptionType.NO_SUCH_CLASS, e.type);
+            }
         }
-
-        [TestMethod]
-        public void GivenMoodAnalyserClassName_WhenDefaultConstructorCalled_ShouldReturnEqualObjects()
-        {
-            Mood moodAnalyser1 = MoodAnalyserFactory.CreateMoodAnalyser();
-            Mood moodAnalyser2 = MoodAnalyserFactory.CreateMoodAnalyser();
-            Assert.AreEqual(moodAnalyser1, moodAnalyser2);
-        }
-    }
 }

@@ -10,15 +10,16 @@ namespace Mood_Analyser_ExceptionHandling
     {
         public enum ExceptionType
         {
+            NO_SUCH_CLASS,
+            NO_SUCH_METHOD,
+            NO_SUCH_FIELD,
             NULL_MESSAGE,
             EMPTY_MESSAGE,
-            NO_SUCH_FIELD,
-            NO_SUCH_METHOD,
-            NO_SUCH_CLASS,
+            NO_SUCH_CONSTRUCTOR,
             OBJECT_CREATION_ISSUE
         }
 
-        private readonly ExceptionType type;
+        public readonly ExceptionType type;
 
         public MoodAnalysisException(ExceptionType type, string message) : base(message)
         {
